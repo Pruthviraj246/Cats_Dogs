@@ -1,0 +1,33 @@
+# Dataset (too large for GitHub)
+dataset/
+data/
+
+# Saved models
+*.pkl
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Output plots
+plots/
