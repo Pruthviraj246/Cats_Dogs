@@ -1,24 +1,16 @@
-"""
-Download the Kaggle Dogs vs Cats dataset from a public Microsoft mirror.
-Extracts into the expected directory structure for the training script.
-
-Usage:
-    python download_dataset.py
-"""
-
 import os
 import zipfile
 import urllib.request
 import sys
 
-# Microsoft public mirror of the Kaggle Dogs vs Cats dataset
+
 DATASET_URL = "https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_5340.zip"
 ZIP_FILE = "kagglecatsanddogs_5340.zip"
 EXTRACT_DIR = "dataset"
 
 
 def download_file(url, filename):
-    """Download a file with progress display."""
+   
     print(f"Downloading from:\n  {url}")
     print(f"Saving to: {filename}")
     print("This may take a few minutes (~800 MB)...\n")
@@ -39,14 +31,13 @@ def download_file(url, filename):
 
 
 def extract_and_organize(zip_path, extract_dir):
-    """Extract ZIP and organize into the expected folder structure."""
+    
     print(f"\nExtracting {zip_path}...")
     with zipfile.ZipFile(zip_path, "r") as zf:
         zf.extractall(extract_dir)
     print("Extraction complete!")
 
-    # The Microsoft dataset extracts to: dataset/PetImages/Cat/ and dataset/PetImages/Dog/
-    # We need: dataset/training_set/training_set/cats/ and dogs/
+  
     src_cat = os.path.join(extract_dir, "PetImages", "Cat")
     src_dog = os.path.join(extract_dir, "PetImages", "Dog")
     dst_base = os.path.join(extract_dir, "training_set", "training_set")
@@ -58,7 +49,7 @@ def extract_and_organize(zip_path, extract_dir):
 
     print("\nOrganizing files into expected structure...")
 
-    # Copy/move cat images
+    
     if os.path.isdir(src_cat):
         count = 0
         for fname in os.listdir(src_cat):
@@ -69,7 +60,7 @@ def extract_and_organize(zip_path, extract_dir):
                 count += 1
         print(f"  Cats: {count} images")
 
-    # Copy/move dog images
+    
     if os.path.isdir(src_dog):
         count = 0
         for fname in os.listdir(src_dog):
@@ -92,14 +83,14 @@ def main():
 
     extract_and_organize(ZIP_FILE, EXTRACT_DIR)
 
-    # Clean up ZIP
+    
     try:
         os.remove(ZIP_FILE)
         print(f"Cleaned up: {ZIP_FILE}")
     except OSError:
         pass
 
-    print("\n✅ Done! You can now run:  python svm_cats_dogs.py")
+    print("\n Done! You can now run:  python svm_cats_dogs.py")
 
 
 if __name__ == "__main__":
