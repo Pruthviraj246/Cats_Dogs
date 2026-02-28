@@ -11,6 +11,8 @@ Author : Pruthviraj
 Date   : February 2026
 """
 
+from __future__ import annotations
+
 import os
 import argparse
 import time
